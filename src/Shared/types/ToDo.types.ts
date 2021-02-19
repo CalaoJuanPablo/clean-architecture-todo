@@ -1,10 +1,4 @@
-export interface IToDo {
-  title: string
-  description: string
-  completed: boolean
-}
-
-export interface IToDoPrimitives {
+export type ToDoTypes = {
   title: string
   description?: string
   completed?: boolean

@@ -1,5 +1,5 @@
 import { ToDoId } from './ToDoId'
-import { IToDo, IToDoPrimitives } from '@shared/types/ToDo.types'
+import { ToDoTypes } from '@shared/types/ToDo.types'
 
 export class ToDo {
   readonly _id: ToDoId
@@ -7,7 +7,7 @@ export class ToDo {
   description: string
   completed: boolean
 
-  constructor({ title, description, completed }: IToDo) {
+  constructor({ title, description = '', completed = false }: ToDoTypes) {
     this._id = ToDoId.random()
     this.title = title
     this.description = description
@@ -18,7 +18,7 @@ export class ToDo {
     title,
     description = '',
     completed = false
-  }: IToDoPrimitives): ToDo {
+  }: ToDoTypes): ToDo {
     return new ToDo({ title, description, completed })
   }
 
