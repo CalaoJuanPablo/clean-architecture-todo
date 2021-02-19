@@ -1,14 +1,11 @@
 import { ToDoId } from './ToDoId'
-import { ToDoTitle } from './ToDoTitle'
-import { ToDoDescription } from './ToDoDescription'
-import { ToDoCompletedFlag } from './ToDoCompletedFlag'
-import { IToDo, IToDoPrimitives, IToDoPrimitivesReturnType } from './types'
+import { IToDo, IToDoPrimitives } from './types'
 
 export class ToDo {
   readonly _id: ToDoId
-  readonly title: ToDoTitle
-  readonly description: ToDoDescription
-  readonly completed: ToDoCompletedFlag
+  readonly title: string
+  readonly description: string
+  readonly completed: boolean
 
   constructor({ title, description, completed }: IToDo) {
     this._id = ToDoId.random()
@@ -17,28 +14,11 @@ export class ToDo {
     this.completed = completed
   }
 
-  static create({ title, description, completed }: IToDo) {
-    return new ToDo({ title, description, completed })
-  }
-
-  static fromPrimitives({
+  static create({
     title,
     description = '',
     completed = false
-  }: IToDoPrimitives): ToDo {
-    return new ToDo({
-      title: new ToDoTitle(title),
-      description: new ToDoDescription(description),
-      completed: new ToDoCompletedFlag(completed)
-    })
-  }
-
-  toPrimitives(): IToDoPrimitivesReturnType {
-    return {
-      id: this._id.value,
-      title: this.title.value,
-      description: this.description.value,
-      completed: this.completed.value
-    }
+  }: IToDoPrimitives) {
+    return new ToDo({ title, description, completed })
   }
 }
