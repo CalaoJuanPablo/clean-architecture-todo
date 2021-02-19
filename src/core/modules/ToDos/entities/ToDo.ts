@@ -1,5 +1,5 @@
 import { ToDoId } from './ToDoId'
-import { ToDoTypes } from '@shared/types/ToDo.types'
+import { ToDoTypes } from '@core-shared/types/ToDo.types'
 
 export class ToDo {
   readonly _id: ToDoId
