@@ -1,39 +1,62 @@
 import { ToDoId } from './ToDoId'
-import { ToDoTypes } from '@core-shared/types/ToDo.types'
+import {
+  ToDoTypes,
+  ToDoTypesPrimitives,
+  ToDoTypesPrimitivesReturn
+} from '@core-shared/types/ToDo.types'
+import {
+  StringValueObject,
+  BooleanValueObject
+} from '@core-shared/value-objects'
 
 export class ToDo {
-  readonly _id: ToDoId
-  title: string
-  description: string
-  completed: boolean
+  private readonly _id: ToDoId = ToDoId.random()
+  private title: StringValueObject
+  private description: StringValueObject
+  private completed: BooleanValueObject
 
-  constructor({ title, description = '', completed = false }: ToDoTypes) {
-    this._id = ToDoId.random()
+  constructor({ title, description, completed }: ToDoTypes) {
     this.title = title
     this.description = description
     this.completed = completed
   }
 
-  static create({
-    title,
-    description = '',
-    completed = false
-  }: ToDoTypes): ToDo {
+  static create({ title, description, completed }: ToDoTypes): ToDo {
     return new ToDo({ title, description, completed })
   }
 
-  updateTitle(title: string): ToDo {
+  static fromPrimitives({
+    title,
+    description = '',
+    completed = false
+  }: ToDoTypesPrimitives): ToDo {
+    return new ToDo({
+      title: new StringValueObject(title),
+      description: new StringValueObject(description),
+      completed: new BooleanValueObject(completed)
+    })
+  }
+
+  toPrimitives(): ToDoTypesPrimitivesReturn {
+    const { _id, title, description, completed } = this
+
+    return {
+      id: _id.value,
+      title: title.value,
+      description: description.value,
+      completed: completed.value
+    }
+  }
+
+  updateTitle(title: StringValueObject) {
     this.title = title
-    return this
   }
 
-  updateDescription(description: string): ToDo {
+  updateDescription(description: StringValueObject) {
     this.description = description
-    return this
   }
 
-  toggleToDo(): ToDo {
-    this.completed = !this.completed
-    return this
+  toggleToDo() {
+    this.completed = new BooleanValueObject(!this.completed.value)
   }
 }
