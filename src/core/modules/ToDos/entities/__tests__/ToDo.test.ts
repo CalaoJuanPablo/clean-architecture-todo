@@ -39,33 +39,35 @@ describe('ToDo Entity', () => {
       expect(toDo).toBeInstanceOf(ToDo)
     })
 
-    test('Return toPrimitives values', () => {
-      const toDo = new ToDo(toDoParams)
-      const returnedObject = toDo.toPrimitives()
-      expect(returnedObject).toHaveProperty('id')
-      expect(returnedObject).toHaveProperty('title')
-      expect(returnedObject).toHaveProperty('description')
-      expect(returnedObject).toHaveProperty('completed')
-    })
+    describe('Methods', () => {
+      test('Return toPrimitives values', () => {
+        const toDo = new ToDo(toDoParams)
+        const returnedObject = toDo.toPrimitives()
+        expect(returnedObject).toHaveProperty('id')
+        expect(returnedObject).toHaveProperty('title')
+        expect(returnedObject).toHaveProperty('description')
+        expect(returnedObject).toHaveProperty('completed')
+      })
 
-    test('Update title method', () => {
-      const toDo = new ToDo(toDoParams)
-      const newTitle = new StringValueObject('new title')
-      toDo.updateTitle(newTitle)
-      expect(toDo.title.value).toBe('new title')
-    })
+      test('Update title method', () => {
+        const toDo = new ToDo(toDoParams)
+        const newTitle = new StringValueObject('new title')
+        toDo.updateTitle(newTitle)
+        expect(toDo.title.value).toBe('new title')
+      })
 
-    test('Update description method', () => {
-      const toDo = new ToDo(toDoParams)
-      const newDescription = new StringValueObject('new description')
-      toDo.updateDescription(newDescription)
-      expect(toDo.description.value).toBe('new description')
-    })
+      test('Update description method', () => {
+        const toDo = new ToDo(toDoParams)
+        const newDescription = new StringValueObject('new description')
+        toDo.updateDescription(newDescription)
+        expect(toDo.description.value).toBe('new description')
+      })
 
-    test('Update description method', () => {
-      const toDo = new ToDo(toDoParams)
-      toDo.toggleToDo()
-      expect(toDo.completed.value).toBe(true)
+      test('Update description method', () => {
+        const toDo = new ToDo(toDoParams)
+        toDo.toggleToDo()
+        expect(toDo.completed.value).toBe(true)
+      })
     })
   })
 })
