@@ -1,6 +1,6 @@
 import { ToDoId } from './ToDoId'
 import {
-  ToDoTypes,
+  ToDoConstructorParamTypes,
   ToDoTypesPrimitives,
   ToDoTypesPrimitivesReturn
 } from '@core-shared/types/ToDo.types'
@@ -10,30 +10,27 @@ import {
 } from '@core-shared/value-objects'
 
 export class ToDo {
-  private readonly _id: ToDoId = ToDoId.random()
-  private title: StringValueObject
-  private description: StringValueObject
-  private completed: BooleanValueObject
+  readonly _id: ToDoId = ToDoId.random()
+  title: StringValueObject
+  description: StringValueObject
+  completed: BooleanValueObject = new BooleanValueObject(false)
 
-  constructor({ title, description, completed }: ToDoTypes) {
+  constructor({ title, description }: ToDoConstructorParamTypes) {
     this.title = title
     this.description = description
-    this.completed = completed
   }
 
-  static create({ title, description, completed }: ToDoTypes): ToDo {
-    return new ToDo({ title, description, completed })
+  static create({ title, description }: ToDoConstructorParamTypes): ToDo {
+    return new ToDo({ title, description })
   }
 
   static fromPrimitives({
     title,
-    description = '',
-    completed = false
+    description = ''
   }: ToDoTypesPrimitives): ToDo {
     return new ToDo({
       title: new StringValueObject(title),
-      description: new StringValueObject(description),
-      completed: new BooleanValueObject(completed)
+      description: new StringValueObject(description)
     })
   }
 
