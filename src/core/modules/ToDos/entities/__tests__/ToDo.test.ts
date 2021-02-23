@@ -1,4 +1,5 @@
 import { ToDo } from '../ToDo'
+import { ListOfToDos } from '../ListOfToDos'
 import {
   ToDoConstructorParamTypes,
   ToDoTypesPrimitives
@@ -68,6 +69,22 @@ describe('ToDo Entity', () => {
         toDo.toggleToDo()
         expect(toDo.completed.value).toBe(true)
       })
+    })
+  })
+})
+
+describe('List of ToDos', () => {
+  describe('Create a list of ToDos', () => {
+    const toDosPrimitiveArr = [
+      mockToDoPrimitiveData,
+      mockToDoPrimitiveData,
+      mockToDoPrimitiveData
+    ]
+    const ToDosArray = toDosPrimitiveArr.map(toDo => ToDo.fromPrimitives(toDo))
+    const ListOfToDosCreated = new ListOfToDos(ToDosArray)
+
+    test('ListOfToDosCreated is an instance of ListOfToDos', () => {
+      expect(ListOfToDosCreated).toBeInstanceOf(ListOfToDos)
     })
   })
 })

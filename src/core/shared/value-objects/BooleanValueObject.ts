@@ -5,7 +5,7 @@ export class BooleanValueObject {
     this.value = value
   }
 
-  toString(): boolean {
+  toBoolean(): boolean {
     return this.value
   }
 }
