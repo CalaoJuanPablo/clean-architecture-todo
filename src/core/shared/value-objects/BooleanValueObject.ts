@@ -1,11 +1,11 @@
 export class BooleanValueObject {
-  readonly value: boolean
+  private _value: boolean
 
   constructor(value: boolean) {
-    this.value = value
+    this._value = value
   }
 
   toBoolean(): boolean {
-    return this.value
+    return this._value
   }
 }

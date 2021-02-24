@@ -1,4 +1,5 @@
-import { NotImplementedErrorUseCase } from '@core-shared/use-cases/NotImplementedErrorUseCase'
+import { SharedUseCasesFactory } from '@core-shared/use-cases/factory'
+import { ToDosUseCasesFactories } from './ToDos/use-cases/factory'
 
 type DomainTypes = {
   useCases: {
@@ -6,7 +7,9 @@ type DomainTypes = {
   }
 }
 
-const useCases = {}
+const useCases = {
+  view_list_of_to_dos_use_case: ToDosUseCasesFactories.viewListOfToDosUseCase
+}
 
 class Domain {
   readonly _useCases
@@ -19,7 +22,7 @@ class Domain {
     const useCase = this._useCases[key]
 
     if (typeof useCase === 'undefined')
-      return new NotImplementedErrorUseCase({ key })
+      return SharedUseCasesFactory.notImplementedErrorUseCase(key)
 
     return useCase
   }

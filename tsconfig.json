@@ -15,8 +15,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@core-shared/*": ["src/core/shared/*"],
-      "@core-domain/*": ["src/core/domain/*"]
+      "@core-shared/*": ["src/core/shared/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

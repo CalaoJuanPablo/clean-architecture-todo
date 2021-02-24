@@ -1,11 +1,11 @@
 export class StringValueObject {
-  readonly value: string
+  private _value: string
 
   constructor(value: string) {
-    this.value = value
+    this._value = value
   }
 
   toString(): string {
-    return this.value
+    return this._value
   }
 }

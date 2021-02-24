@@ -1,17 +1,22 @@
-import { v4 } from 'uuid'
+import { validate } from 'uuid'
 
 export class Uuid {
-  readonly value: string
+  private _value: string
 
   constructor(value: string) {
-    this.value = value
+    this._ensureIsValidUuid(value)
+    this._value = value
   }
 
-  static random(): Uuid {
-    return new Uuid(v4())
+  private _ensureIsValidUuid(id: string): void {
+    if (!validate(id)) {
+      throw new Error(
+        `<${this.constructor.name}> does not allow the value <${id}>`
+      )
+    }
   }
 
   toString(): string {
-    return this.value
+    return this._value
   }
 }
