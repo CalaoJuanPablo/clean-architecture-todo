@@ -3,7 +3,7 @@ import {
   ToDoConstructorParamTypes,
   ToDoTypesPrimitives,
   ToDoTypesPrimitivesReturn
-} from '@core-shared/types/ToDo.types'
+} from '../types/ToDo.types'
 import {
   StringValueObject,
   BooleanValueObject

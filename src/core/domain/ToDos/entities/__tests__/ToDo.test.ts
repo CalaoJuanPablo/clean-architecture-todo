@@ -3,7 +3,7 @@ import { ListOfToDos } from '../ListOfToDos'
 import {
   ToDoConstructorParamTypes,
   ToDoTypesPrimitives
-} from '@core-shared/types/ToDo.types'
+} from '../../types/ToDo.types'
 import { StringValueObject } from '@core-shared/value-objects'
 
 const mockToDoPrimitiveData: ToDoTypesPrimitives = {
