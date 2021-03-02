@@ -1,3 +1,5 @@
+import { ListOfToDosValueObject } from '../value-objects/ListOfToDosValueObject'
+
 export interface ToDosPort {
-  getAll(): Promise<any>
+  getAll(): Promise<ListOfToDosValueObject>
 }

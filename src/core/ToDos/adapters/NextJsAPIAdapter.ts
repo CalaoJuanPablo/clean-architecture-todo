@@ -1,17 +1,33 @@
-import { ToDoEntity, ToDoEntityParams } from '../entities/ToDoEntity'
+import { FromToDosAPIResponseToListOfToDosValueObjectMapper } from '../mappers/FromToDosAPIResponseToListOfToDosValueObjectMapper'
 import { ToDosPort } from '../ports/ToDosPort'
 
+export type NextJSAPIToDoTypes = {
+  id: string
+  title: string
+  description?: string
+  completed?: boolean
+}
+
+type NextJsAPIFetcherResponse = {
+  toDos: NextJSAPIToDoTypes[]
+}
+
 type NextJsAPIAdapterParams = {
-  toDosEntityFactory: (toDo: ToDoEntityParams) => ToDoEntity
+  apiFetcher: () => Promise<NextJsAPIFetcherResponse>
+  mapper: FromToDosAPIResponseToListOfToDosValueObjectMapper
 }
 export class NextJsAPIAdapter implements ToDosPort {
-  private _toDosEntityFactory
+  private _fetcher
+  private _mapper
 
-  constructor({ toDosEntityFactory }: NextJsAPIAdapterParams) {
-    this._toDosEntityFactory = toDosEntityFactory
+  constructor({ apiFetcher, mapper }: NextJsAPIAdapterParams) {
+    this._fetcher = apiFetcher
+    this._mapper = mapper
   }
 
-  getAll() {
-    return Promise.resolve([])
+  async getAll() {
+    const { toDos } = await this._fetcher()
+    const toDosMapped = this._mapper.map(toDos)
+    return toDosMapped
   }
 }

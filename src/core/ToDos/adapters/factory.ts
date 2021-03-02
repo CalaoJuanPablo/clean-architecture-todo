@@ -1,8 +1,9 @@
-import { ToDosEntitiesFactory } from '../entities/factory'
+import { ToDosMappersFactory } from '../mappers/factory'
 import { NextJsAPIAdapter } from './NextJsAPIAdapter'
 export class ToDosAdaptersFactory {
   static nextJsAPIAdapter = () =>
     new NextJsAPIAdapter({
-      toDosEntityFactory: ToDosEntitiesFactory.toDoEntity
+      apiFetcher: () => Promise.resolve({ toDos: [] }),
+      mapper: ToDosMappersFactory.fromToDosAPIResponseToListOfToDosValueObjectMapper()
     })
 }

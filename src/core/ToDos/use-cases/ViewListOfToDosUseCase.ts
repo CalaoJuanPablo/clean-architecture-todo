@@ -2,17 +2,17 @@ import { UseCase } from '@core-shared/interfaces/UseCase'
 import { ToDosPort } from '../ports/ToDosPort'
 
 type ViewListOfToDosUseCaseType = {
-  port: ToDosPort
+  adapter: ToDosPort
 }
 
 export class ViewListOfToDosUseCase implements UseCase {
-  private readonly _port: ToDosPort
+  private readonly _adapter: ToDosPort
 
-  constructor({ port }: ViewListOfToDosUseCaseType) {
-    this._port = port
+  constructor({ adapter }: ViewListOfToDosUseCaseType) {
+    this._adapter = adapter
   }
 
   execute() {
-    return this._port.getAll()
+    return this._adapter.getAll()
   }
 }

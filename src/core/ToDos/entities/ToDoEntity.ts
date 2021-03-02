@@ -5,8 +5,8 @@ import { Entity } from '@core-shared/entities/Entity'
 export type ToDoEntityParams = {
   id: string
   title: string
-  description?: string
-  completed?: boolean
+  description: string
+  completed: boolean
 }
 
 export class ToDoEntity implements Entity<ToDoEntityParams> {
@@ -15,12 +15,7 @@ export class ToDoEntity implements Entity<ToDoEntityParams> {
   private _description
   private _completed
 
-  constructor({
-    id,
-    title,
-    description = '',
-    completed = false
-  }: ToDoEntityParams) {
+  constructor({ id, title, description, completed }: ToDoEntityParams) {
     this._id = ToDosEntitiesFactory.toDoId(id)
     this._title = SharedValueObjectsFactory.stringValueObject(title)
     this._description = SharedValueObjectsFactory.stringValueObject(description)
@@ -36,19 +31,5 @@ export class ToDoEntity implements Entity<ToDoEntityParams> {
       description: _description.toString(),
       completed: _completed.toBoolean()
     }
-  }
-
-  updateTitle(title: string) {
-    this._title = SharedValueObjectsFactory.stringValueObject(title)
-  }
-
-  updateDescription(description: string) {
-    this._description = SharedValueObjectsFactory.stringValueObject(description)
-  }
-
-  toggleToDo() {
-    this._completed = SharedValueObjectsFactory.booleanValueObject(
-      !this._completed.toBoolean()
-    )
   }
 }
