@@ -1,6 +1,6 @@
 import { ToDoEntity } from '../entities/ToDoEntity'
 
-type ListOfToDosValueObjectParams = {
+export type ListOfToDosValueObjectParams = {
   toDos: ToDoEntity[]
 }
 

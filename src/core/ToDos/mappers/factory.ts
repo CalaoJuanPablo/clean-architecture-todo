@@ -2,8 +2,9 @@ import { FromToDosAPIResponseToListOfToDosValueObjectMapper } from './FromToDosA
 import { NextJSAPIToDoTypes } from '../adapters/NextJsAPIAdapter'
 import { ToDoEntityParams } from '../entities/ToDoEntity'
 import { ToDosValueObjectsFactory } from '../value-objects/factory'
+import { ToDosEntitiesFactory } from '../entities/factory'
 
-const parser = ({ toDo }: { toDo: NextJSAPIToDoTypes }): ToDoEntityParams => ({
+const parser = (toDo: NextJSAPIToDoTypes): ToDoEntityParams => ({
   id: toDo.id,
   title: toDo.title,
   description: toDo.description || '',
@@ -14,6 +15,7 @@ export class ToDosMappersFactory {
   static fromToDosAPIResponseToListOfToDosValueObjectMapper = () =>
     new FromToDosAPIResponseToListOfToDosValueObjectMapper({
       parser,
+      toDoEntityFactory: ToDosEntitiesFactory.toDoEntity,
       listOfToDosValueObjectFactory:
         ToDosValueObjectsFactory.listOfToDosValueObject
     })

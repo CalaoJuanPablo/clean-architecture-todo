@@ -1,15 +1,10 @@
-import { ListOfToDosValueObject } from './ListOfToDosValueObject'
-import { ToDosEntitiesFactory } from '../entities/factory'
-import { ToDoEntityParams } from '../entities/ToDoEntity'
+import {
+  ListOfToDosValueObject,
+  ListOfToDosValueObjectParams
+} from './ListOfToDosValueObject'
 
 export class ToDosValueObjectsFactory {
-  static listOfToDosValueObject = ({
-    toDos
-  }: {
-    toDos: ToDoEntityParams[]
-  }) => {
-    const toDosEntities = toDos.map(ToDosEntitiesFactory.toDoEntity)
-
-    return new ListOfToDosValueObject({ toDos: toDosEntities })
+  static listOfToDosValueObject = ({ toDos }: ListOfToDosValueObjectParams) => {
+    return new ListOfToDosValueObject({ toDos })
   }
 }
