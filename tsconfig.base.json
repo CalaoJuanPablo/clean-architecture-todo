@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@clean-architecture-todo/domain/to-do": [
+        "libs/domain/to-do/src/index.ts"
+      ],
+      "@clean-architecture-todo/domain/shared": [
+        "libs/domain/shared/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

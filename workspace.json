@@ -1,10 +1,44 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+  "projects": {
+    "domain-to-do": {
+      "root": "libs/domain/to-do",
+      "sourceRoot": "libs/domain/to-do/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/domain/to-do/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/domain/to-do"],
+          "options": {
+            "jestConfig": "libs/domain/to-do/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "domain-shared": {
+      "root": "libs/domain/shared",
+      "sourceRoot": "libs/domain/shared/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/domain/shared/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/domain/shared"],
+          "options": {
+            "jestConfig": "libs/domain/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": { "defaultCollection": "@nrwl/workspace" }
 }
